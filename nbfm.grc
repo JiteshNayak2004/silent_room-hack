@@ -1,0 +1,384 @@
+options:
+  parameters:
+    author: dakshinakali
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: NBFM_Rx
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: NBFM Rx
+    window_size: 2096, 4096
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: bbg
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 5,1,1,1
+    label: BB Gain
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '2'
+    stop: '62'
+    value: '32'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1464, 4]
+    rotation: 0
+    state: enabled
+- name: center_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: freq+500e3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [0, 992]
+    rotation: 0
+    state: enabled
+- name: freq
+  id: variable_qtgui_entry
+  parameters:
+    comment: ''
+    gui_hint: 3,1,1,1
+    label: FREQ
+    type: real
+    value: 147e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [944, 4]
+    rotation: 0
+    state: enabled
+- name: ifg
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 4,1,1,1
+    label: IF Gain
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '5'
+    stop: '40'
+    value: '32'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1248, 4]
+    rotation: 0
+    state: enabled
+- name: nbfm_bandwidth
+  id: variable
+  parameters:
+    comment: ''
+    value: 12e3
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [0, 1120]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 10e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 872]
+    rotation: 0
+    state: enabled
+- name: sql
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 6,1,1,1
+    label: Squelch
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '-80'
+    step: '1'
+    stop: '80'
+    value: '42'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1680, 4]
+    rotation: 0
+    state: enabled
+- name: vol
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 7,1,1,1
+    label: Vol
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '20'
+    value: '8'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1896, 4]
+    rotation: 0
+    state: enabled
+- name: analog_agc3_xx_0
+  id: analog_agc3_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    attack_rate: 1e-3
+    comment: ''
+    decay_rate: 100e-6
+    gain: '1'
+    iir_update_decim: '1'
+    max_gain: '65536'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    reference: '1.0'
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1048, 420]
+    rotation: 0
+    state: enabled
+- name: analog_nbfm_rx_0
+  id: analog_nbfm_rx
+  parameters:
+    affinity: ''
+    alias: ''
+    audio_rate: '48000'
+    comment: ''
+    max_dev: 5e3
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    quad_rate: '48000'
+    tau: 75e-6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1776, 580]
+    rotation: 0
+    state: enabled
+- name: analog_pwr_squelch_xx_0
+  id: analog_pwr_squelch_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha: 75e-6
+    comment: ''
+    gate: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    ramp: '10'
+    threshold: sql
+    type: complex
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 444]
+    rotation: 0
+    state: enabled
+- name: analog_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: center_freq-freq
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    type: complex
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [24, 448]
+    rotation: 0
+    state: enabled
+- name: audio_sink_0
+  id: audio_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    device_name: ''
+    num_inputs: '1'
+    ok_to_block: 'True'
+    samp_rate: '48000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1800, 1056]
+    rotation: 0
+    state: enabled
+- name: blocks_moving_average_xx_0_0
+  id: blocks_moving_average_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    length: '1000'
+    max_iter: '1000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: '30'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [496, 652]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '0.05'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1816, 824]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_1
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: vol
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1816, 944]
+    rotation: 0
+    state: enabled
+- name: low_pass_filter_0
+  id: low_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    cutoff_freq: nbfm_bandwidth
+    decim: int(samp_rate/nbfm_bandwidth)
+    gain: '1'
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fir_filter_ccf
+    width: 1e3
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1424, 404]
+    rotation: 0
+    state: enabled
+- name: rational_resampler_xxx_1
+  id: rational_resampler_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: '1'
+    fbw: '0'
+    interp: '4'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    taps: ''
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1784, 380]
+    rotation: 0
+    state: enabled
+
+connections:
+- [analog_agc3_xx_0, '0', low_pass_filter_0, '0']
+- [analog_nbfm_rx_0, '0', blocks_multiply_const_vxx_0, '0']
+- [analog_pwr_squelch_xx_0, '0', analog_agc3_xx_0, '0']
+- [analog_sig_source_x_0, '0', blocks_moving_average_xx_0_0, '0']
+- [blocks_moving_average_xx_0_0, '0', analog_pwr_squelch_xx_0, '0']
+- [blocks_multiply_const_vxx_0, '0', blocks_multiply_const_vxx_1, '0']
+- [blocks_multiply_const_vxx_1, '0', audio_sink_0, '0']
+- [low_pass_filter_0, '0', rational_resampler_xxx_1, '0']
+- [rational_resampler_xxx_1, '0', analog_nbfm_rx_0, '0']
+
+metadata:
+  file_format: 1
